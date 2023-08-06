@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class ResumeTempController extends GetxController {
-  
   // Is presseds
   var Vercel_isPressed = false.obs;
   var profile_isPressed = true.obs;
@@ -28,8 +27,8 @@ class ResumeTempController extends GetxController {
 
   // Tokens
   var auth_token = "oA2kyJ8EktEKl995UQZUpm4N";
-  var git_access_token = "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";
-  // ------------------------------
+  var git_access_token = "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";
+  // ------------------------------------------------------
 
   var push_repo_names = [];
   var UserInfo;
@@ -61,6 +60,7 @@ class ResumeTempController extends GetxController {
 
   Future<void> load() async {
 // Get Vercel Projects
+
     headers_projects = {'Authorization': 'Bearer ${auth_token}'};
 
     var request_projects =

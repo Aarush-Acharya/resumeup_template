@@ -35,20 +35,18 @@ class ResumeState extends State<Resume> {
       body: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(12)),
         child: Container(
-          height: 87.2 / 100 * MediaQuery.of(context).size.height,
-          width: 76.388888 / 100 * MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
           child: Padding(
-            padding: EdgeInsets.symmetric(
-                vertical: 2.43 / 100 * MediaQuery.of(context).size.height,
-                horizontal: 1.38 / 100 * MediaQuery.of(context).size.width),
+            padding: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
             child: Column(children: [
               SizedBox(
-                height: 4.85 / 100 * MediaQuery.of(context).size.height,
+                height: 40,
               ),
               Row(
                 children: [
                   SizedBox(
-                    width: 12.18 / 100 * MediaQuery.of(context).size.height,
+                    width: 300,
                   ),
                   Obx(
                     () => controller.profile_isPressed.value
@@ -63,19 +61,9 @@ class ResumeState extends State<Resume> {
                               padding: EdgeInsets.all(5),
                               child: CircleAvatar(
                                 backgroundColor: Colors.black,
-                                radius: 2.36 /
-                                        100 *
-                                        MediaQuery.of(context).size.width +
-                                    4.14 /
-                                        100 *
-                                        MediaQuery.of(context).size.height,
+                                radius: 85,
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12.18 /
-                                          100 *
-                                          MediaQuery.of(context).size.height +
-                                      6.94 /
-                                          100 *
-                                          MediaQuery.of(context).size.width),
+                                  borderRadius: BorderRadius.circular(100),
                                   child: Image.network(
                                       controller.profile_url.toString()),
                                 ),
@@ -85,11 +73,11 @@ class ResumeState extends State<Resume> {
                         : SizedBox(),
                   ),
                   SizedBox(
-                    width: 1.38 / 100 * MediaQuery.of(context).size.width,
+                    width: 30,
                   ),
                   Container(
-                    width: 34.72 / 100 * MediaQuery.of(context).size.width,
-                    height: 15.83 / 100 * MediaQuery.of(context).size.height,
+                    width: 550,
+                    height: 150,
                     decoration: BoxDecoration(
                         border: Border.all(
                             style: BorderStyle.solid,
@@ -97,105 +85,60 @@ class ResumeState extends State<Resume> {
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                     child: Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 1.0416666 /
-                                100 *
-                                MediaQuery.of(context).size.width,
-                            vertical: 1.218 /
-                                100 *
-                                MediaQuery.of(context).size.height),
+                          horizontal: 15,
+                          vertical: 10,
+                        ),
                         child: Column(children: [
-                          Stack(alignment: Alignment.centerRight, children: [
-                            TextField(
-                              controller: controller.name_feild,
-                              style: TextStyle(
-                                  fontSize: 1.43 /
-                                          100 *
-                                          MediaQuery.of(context).size.height +
-                                      0.83 /
-                                          100 *
-                                          MediaQuery.of(context).size.width,
-                                  fontWeight: FontWeight.w200,
-                                  color: Colors.white),
-                              decoration: InputDecoration(
-                                  hintText: "What's Your Name (Fetching ...)",
-                                  hintStyle: TextStyle(
-                                      fontSize: 1.43 /
-                                              100 *
-                                              MediaQuery.of(context)
-                                                  .size
-                                                  .height +
-                                          0.83 /
-                                              100 *
-                                              MediaQuery.of(context).size.width,
-                                      color:
-                                          Color.fromARGB(146, 150, 137, 137)),
-                                  border: InputBorder.none),
-                              cursorOpacityAnimates: true,
-                              cursorWidth: 0.138 /
-                                  100 *
-                                  MediaQuery.of(context).size.width,
-                              cursorHeight: 2.679 /
-                                  100 *
-                                  MediaQuery.of(context).size.height,
-                              cursorRadius: Radius.circular(20),
-                              cursorColor: Color.fromARGB(0, 195, 187, 187),
-                            ),
-                            Icon(
-                              Icons.edit,
-                              color: Color.fromARGB(104, 233, 230, 230),
-                              size: 20,
-                            )
-                          ]),
-                          Stack(children: [
-                            TextField(
-                              controller: controller.description_feild,
-                              maxLines: 2,
-                              style: TextStyle(
-                                  fontSize: 1.8 /
-                                      100 *
-                                      MediaQuery.of(context).size.height,
-                                  color: Color.fromARGB(171, 217, 213, 213)),
-                              decoration: InputDecoration(
-                                  hintText: "More about ya (fetching ...)",
-                                  hintStyle: TextStyle(
-                                      fontSize: 1.8 /
-                                          100 *
-                                          MediaQuery.of(context).size.height,
-                                      color:
-                                          Color.fromARGB(109, 150, 137, 137)),
-                                  isDense: true,
-                                  border: InputBorder.none),
-                              cursorOpacityAnimates: true,
-                              cursorWidth: 0.138 /
-                                  100 *
-                                  MediaQuery.of(context).size.width,
-                              cursorHeight: 1.948 /
-                                  100 *
-                                  MediaQuery.of(context).size.height,
-                              cursorRadius: Radius.circular(20),
-                              cursorColor: Color.fromARGB(0, 195, 187, 187),
-                            ),
-                          ]),
+                          TextField(
+                            enabled: false,
+                            controller: controller.name_feild,
+                            style: TextStyle(
+                                fontSize: 25,
+                                fontWeight: FontWeight.w200,
+                                color: Colors.white),
+                            decoration: InputDecoration(
+                                hintText: "What's Your Name (Fetching ...)",
+                                hintStyle: TextStyle(
+                                    fontSize: 25,
+                                    color: Color.fromARGB(146, 150, 137, 137)),
+                                border: InputBorder.none),
+                            cursorOpacityAnimates: true,
+                            cursorRadius: Radius.circular(20),
+                            cursorColor: Color.fromARGB(0, 195, 187, 187),
+                          ),
+                          TextField(
+                            enabled: false,
+                            controller: controller.description_feild,
+                            maxLines: 2,
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Color.fromARGB(171, 217, 213, 213)),
+                            decoration: InputDecoration(
+                                hintText: "More about ya (fetching ...)",
+                                hintStyle: TextStyle(
+                                    fontSize: 15,
+                                    color: Color.fromARGB(109, 150, 137, 137)),
+                                isDense: true,
+                                border: InputBorder.none),
+                            cursorOpacityAnimates: true,
+                            cursorRadius: Radius.circular(20),
+                            cursorColor: Color.fromARGB(0, 195, 187, 187),
+                          ),
                         ])),
                   )
                 ],
               ),
               SizedBox(
-                height: 4.85 / 100 * MediaQuery.of(context).size.height,
+                height: 40,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    width: 0.347 / 100 * MediaQuery.of(context).size.width,
-                  ),
                   Obx(
                     () => controller.github_issues_isPressed.value
                         ? Container(
-                            height: 25.57 /
-                                100 *
-                                MediaQuery.of(context).size.height,
-                            width:
-                                22.22 / 100 * MediaQuery.of(context).size.width,
+                            height: 230,
+                            width: 340,
                             decoration: BoxDecoration(
                                 border: Border.all(
                                   color:
@@ -221,7 +164,9 @@ class ResumeState extends State<Resume> {
                                       child: Text(
                                         "Github Activity",
                                         style: TextStyle(
-                                            fontFamily: 'Nunito',
+                                            fontSize: 15,
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w200,
                                             color: Colors.white),
                                       )),
                                   //start
@@ -276,12 +221,7 @@ class ResumeState extends State<Resume> {
                                           100 *
                                           MediaQuery.of(context).size.height),
                                   Padding(
-                                      padding: EdgeInsets.only(
-                                          left: 3 /
-                                              100 *
-                                              MediaQuery.of(context)
-                                                  .size
-                                                  .height),
+                                      padding: EdgeInsets.only(left: 24),
                                       child: Container(
                                         height: 4.17 /
                                             100 *
@@ -377,14 +317,9 @@ class ResumeState extends State<Resume> {
                                           100 *
                                           MediaQuery.of(context).size.height),
                                   Padding(
-                                      padding: EdgeInsets.only(
-                                          left: 3.065 /
-                                              100 *
-                                              MediaQuery.of(context)
-                                                  .size
-                                                  .width),
+                                      padding: EdgeInsets.only(left: 24),
                                       child: Container(
-                                        height: 3.48 /
+                                        height: 4.17 /
                                             100 *
                                             MediaQuery.of(context).size.height,
                                         child: ListView.builder(
@@ -427,6 +362,11 @@ class ResumeState extends State<Resume> {
                                           },
                                         ),
                                       )),
+                                  SizedBox(
+                                    height: 1.5 /
+                                        100 *
+                                        MediaQuery.of(context).size.height,
+                                  ),
                                   Padding(
                                       padding: EdgeInsets.only(
                                           left: 0.76 /
@@ -475,16 +415,13 @@ class ResumeState extends State<Resume> {
                         : SizedBox(),
                   ),
                   SizedBox(
-                    width: 2.083 / 100 * MediaQuery.of(context).size.width,
+                    width: 60,
                   ),
                   Obx(
                     () => controller.Vercel_isPressed.value
                         ? Container(
-                            height: 25.57 /
-                                100 *
-                                MediaQuery.of(context).size.height,
-                            width:
-                                22.22 / 100 * MediaQuery.of(context).size.width,
+                            height: 230,
+                            width: 340,
                             decoration: BoxDecoration(
                                 border: Border.all(
                                   color: Color.fromARGB(255, 5, 252, 190),
@@ -509,6 +446,7 @@ class ResumeState extends State<Resume> {
                                       child: Text(
                                         "Vercel",
                                         style: TextStyle(
+                                            fontSize: 15,
                                             fontFamily: 'Nunito',
                                             color: Colors.white),
                                       )),
@@ -699,11 +637,11 @@ class ResumeState extends State<Resume> {
                         : SizedBox(),
                   ),
                   SizedBox(
-                    width: 2.083 / 100 * MediaQuery.of(context).size.width,
+                    width: 60,
                   ),
                   Container(
-                    height: 25.57 / 100 * MediaQuery.of(context).size.height,
-                    width: 22.22 / 100 * MediaQuery.of(context).size.width,
+                    height: 230,
+                    width: 340,
                     decoration: BoxDecoration(
                         border: Border.all(
                           color: Color.fromARGB(255, 251, 9, 251),
@@ -722,11 +660,12 @@ class ResumeState extends State<Resume> {
                               child: Text(
                                 "Let's Connect",
                                 style: TextStyle(
-                                    fontFamily: 'Nunito', color: Colors.white),
+                                    fontSize: 15,
+                                    fontFamily: 'Nunito',
+                                    color: Colors.white),
                               )),
                           SizedBox(
-                            height:
-                                1.46 / 100 * MediaQuery.of(context).size.height,
+                            height: 15,
                           ),
                           Row(
                             children: [
@@ -743,7 +682,7 @@ class ResumeState extends State<Resume> {
                                     MediaQuery.of(context).size.height,
                               ),
                               SizedBox(
-                                width: 0.55 /
+                                width: 0.95 /
                                     100 *
                                     MediaQuery.of(context).size.width,
                               ),
@@ -752,6 +691,7 @@ class ResumeState extends State<Resume> {
                                     100 *
                                     MediaQuery.of(context).size.width,
                                 child: TextField(
+                                  enabled: false,
                                   controller: controller.email_feild,
                                   style: TextStyle(
                                       fontFamily: 'Poppins',
@@ -788,7 +728,7 @@ class ResumeState extends State<Resume> {
                           ),
                           SizedBox(
                             height:
-                                0.73 / 100 * MediaQuery.of(context).size.height,
+                                1.4 / 100 * MediaQuery.of(context).size.height,
                           ),
                           Row(
                             children: [
@@ -805,7 +745,7 @@ class ResumeState extends State<Resume> {
                                     MediaQuery.of(context).size.height,
                               ),
                               SizedBox(
-                                width: 0.55 /
+                                width: 0.95 /
                                     100 *
                                     MediaQuery.of(context).size.width,
                               ),
@@ -814,6 +754,7 @@ class ResumeState extends State<Resume> {
                                     100 *
                                     MediaQuery.of(context).size.width,
                                 child: TextField(
+                                  enabled: false,
                                   controller: controller.github_unme_feild,
                                   style: TextStyle(
                                       fontFamily: 'Poppins',
@@ -850,7 +791,7 @@ class ResumeState extends State<Resume> {
                           ),
                           SizedBox(
                             height:
-                                0.73 / 100 * MediaQuery.of(context).size.height,
+                                1.4 / 100 * MediaQuery.of(context).size.height,
                           ),
                           Row(
                             children: [
@@ -867,7 +808,7 @@ class ResumeState extends State<Resume> {
                                     MediaQuery.of(context).size.height,
                               ),
                               SizedBox(
-                                width: 0.55 /
+                                width: 0.95 /
                                     100 *
                                     MediaQuery.of(context).size.width,
                               ),
@@ -876,6 +817,7 @@ class ResumeState extends State<Resume> {
                                     100 *
                                     MediaQuery.of(context).size.width,
                                 child: TextField(
+                                  enabled: false,
                                   controller: controller.twitter_unme,
                                   style: TextStyle(
                                       fontFamily: 'Poppins',
@@ -912,7 +854,7 @@ class ResumeState extends State<Resume> {
                           ),
                           SizedBox(
                             height:
-                                0.73 / 100 * MediaQuery.of(context).size.height,
+                                1.4 / 100 * MediaQuery.of(context).size.height,
                           ),
                           Row(
                             children: [
@@ -929,7 +871,7 @@ class ResumeState extends State<Resume> {
                                     MediaQuery.of(context).size.height,
                               ),
                               SizedBox(
-                                width: 0.55 /
+                                width: 0.95 /
                                     100 *
                                     MediaQuery.of(context).size.width,
                               ),
@@ -938,6 +880,7 @@ class ResumeState extends State<Resume> {
                                     100 *
                                     MediaQuery.of(context).size.width,
                                 child: TextField(
+                                  enabled: false,
                                   controller: controller.linkedIn_unme,
                                   style: TextStyle(
                                       fontFamily: 'Poppins',
@@ -979,13 +922,13 @@ class ResumeState extends State<Resume> {
                 ],
               ),
               SizedBox(
-                height: 4.5 / 100 * MediaQuery.of(context).size.height,
+                height: 40,
               ),
               Obx(
                 () => controller.github_chart_isPressed.value
                     ? Container(
-                        height: 24 / 100 * MediaQuery.of(context).size.height,
-                        width: 83.33 / 100 * MediaQuery.of(context).size.width,
+                        height: 220,
+                        width: 1300,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             gradient: LinearGradient(colors: const [
@@ -1009,7 +952,7 @@ class ResumeState extends State<Resume> {
                             colorsets: {
                               1: const Color.fromARGB(255, 255, 153, 0)
                             },
-                            size: 16,
+                            size: 20.8,
                             startDate: DateTime(
                                 DateTime.now().year,
                                 DateTime.now().month - 10,
