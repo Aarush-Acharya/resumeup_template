@@ -5,11 +5,18 @@ import 'package:http/http.dart' as http;
 
 class ResumeTempController extends GetxController {
   // Is presseds
-  var Vercel_isPressed = false.obs;
+  var Vercel_isPressed = true.obs;
   var profile_isPressed = true.obs;
   var github_issues_isPressed = true.obs;
   var github_chart_isPressed = true.obs;
   // .........................................
+
+//Data fetch variables
+  var profileisthere = false.obs;
+  var activity_fetched = false.obs;
+  var map_fetched = false.obs;
+  var vercel_fetched = false.obs;
+// .............................................
 
   var sending = false.obs;
   var commits = 0;
@@ -27,7 +34,7 @@ class ResumeTempController extends GetxController {
 
   // Tokens
   var auth_token = "oA2kyJ8EktEKl995UQZUpm4N";
-  var git_access_token = "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";
+  var git_access_token = "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";
   // ------------------------------------------------------
 
   var push_repo_names = [];
@@ -77,6 +84,7 @@ class ResumeTempController extends GetxController {
       projects = await response_projects.stream.bytesToString();
       projects = jsonDecode(projects);
       projects = projects["projects"];
+      vercel_fetched.value = true;
     } else {
       print("Could not get projects");
       print(response_projects.reasonPhrase);
@@ -104,6 +112,7 @@ class ResumeTempController extends GetxController {
       name_feild.text = UserInfo['name'];
       github_unme_feild.text = UserInfo['login'];
       description_feild.text = UserInfo['bio'];
+      profileisthere.value = true;
     } else {
       print("Did not get user");
       print(response.reasonPhrase);
@@ -133,6 +142,7 @@ class ResumeTempController extends GetxController {
   }
 
   Future<void> getGithubActivity() async {
+    // Get Git Activity
     var request = http.Request(
         'GET',
         Uri.parse(
@@ -187,12 +197,14 @@ class ResumeTempController extends GetxController {
       } else {
         print(response_pr_issue.reasonPhrase);
       }
+      activity_fetched.value = true;
     } else {
       print(response.reasonPhrase);
     }
   }
 
   Future<void> getGithubMap() async {
+    //Get Map Data
     var headers = {
       'Authorization': 'bearer ${git_access_token}',
       'Content-Type': 'text/plain'
@@ -222,6 +234,7 @@ class ResumeTempController extends GetxController {
         }
       }
       print("flag check");
+      map_fetched.value = true;
     } else {
       print(response.reasonPhrase);
     }

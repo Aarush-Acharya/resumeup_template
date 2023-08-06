@@ -48,30 +48,33 @@ class ResumeState extends State<Resume> {
                   SizedBox(
                     width: 300,
                   ),
-                  Obx(
-                    () => controller.profile_isPressed.value
-                        ? Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(90),
-                                gradient: const LinearGradient(colors: [
-                                  Color.fromARGB(255, 26, 153, 182),
-                                  Color.fromARGB(255, 81, 215, 245),
-                                ])),
-                            child: Padding(
-                              padding: EdgeInsets.all(5),
-                              child: CircleAvatar(
-                                backgroundColor: Colors.black,
-                                radius: 85,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(100),
-                                  child: Image.network(
-                                      controller.profile_url.toString()),
-                                ),
-                              ),
-                            ),
-                          )
-                        : SizedBox(),
-                  ),
+                  controller.profile_isPressed.value
+                      ? Obx(
+                          () => controller.profileisthere.value
+                              ? Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(90),
+                                      gradient: const LinearGradient(colors: [
+                                        Color.fromARGB(255, 26, 153, 182),
+                                        Color.fromARGB(255, 81, 215, 245),
+                                      ])),
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5),
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.black,
+                                      radius: 85,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        child: Image.network(
+                                            controller.profile_url.toString()),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : SizedBox(),
+                        )
+                      : SizedBox(),
                   SizedBox(
                     width: 30,
                   ),
@@ -134,8 +137,9 @@ class ResumeState extends State<Resume> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Obx(
-                    () => controller.github_issues_isPressed.value
+                  controller.github_issues_isPressed.value
+                        ?Obx(
+                    () => controller.activity_fetched.value
                         ? Container(
                             height: 230,
                             width: 340,
@@ -412,13 +416,13 @@ class ResumeState extends State<Resume> {
                               ),
                             ),
                           )
-                        : SizedBox(),
-                  ),
+                        : SizedBox(child: Center(child: Text("Loading ..."),),),
+                  ):SizedBox(),
                   SizedBox(
                     width: 60,
                   ),
-                  Obx(
-                    () => controller.Vercel_isPressed.value
+                 controller.Vercel_isPressed.value? Obx(
+                    () => controller.vercel_fetched.value
                         ? Container(
                             height: 230,
                             width: 340,
@@ -634,8 +638,8 @@ class ResumeState extends State<Resume> {
                               ),
                             ),
                           )
-                        : SizedBox(),
-                  ),
+                        : SizedBox(child: Center(child: Text("Loading ..."),),),
+                  ):SizedBox(),
                   SizedBox(
                     width: 60,
                   ),
@@ -924,8 +928,8 @@ class ResumeState extends State<Resume> {
               SizedBox(
                 height: 40,
               ),
-              Obx(
-                () => controller.github_chart_isPressed.value
+              controller.github_chart_isPressed.value?Obx(
+                () => controller.map_fetched.value
                     ? Container(
                         height: 220,
                         width: 1300,
@@ -966,8 +970,8 @@ class ResumeState extends State<Resume> {
                             scrollable: true,
                           ),
                         ))
-                    : SizedBox(),
-              ),
+                    : SizedBox(child: Center(child: Text("Loading ..."),),),
+              ):SizedBox(),
             ]),
           ),
         ),
