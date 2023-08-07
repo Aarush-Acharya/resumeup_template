@@ -33,8 +33,8 @@ class ResumeTempController extends GetxController {
   Map<DateTime, int> impressions = {};
 
   // Tokens
-  var auth_token = "oA2kyJ8EktEKl995UQZUpm4N";
-  var git_access_token = "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";
+  var auth_token = "{{ cookiecutter.vercel_token }}";
+  var git_access_token = "{{ cookiecutter.github_token }}";
   // ------------------------------------------------------
 
   var push_repo_names = [];
