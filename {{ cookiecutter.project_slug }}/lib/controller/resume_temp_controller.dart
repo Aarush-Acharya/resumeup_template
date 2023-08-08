@@ -36,11 +36,6 @@ class ResumeTempController extends GetxController {
   List CreateRepos = [];
   Map<DateTime, int> impressions = {};
 
-  // Tokens
-  var auth_token = "{{ cookiecutter.vercel_token }}";
-  var git_access_token = "{{ cookiecutter.github_token }}";
-  // ------------------------------------------------------
-
   var push_repo_names = [];
   var UserInfo;
   var activity;
@@ -90,12 +85,6 @@ class ResumeTempController extends GetxController {
       print("Could not get projects");
       print(response_projects.reasonPhrase);
     }
-
-    headers = {
-      'Accept': 'application/vnd.github+json',
-      'Authorization': 'Bearer ${git_access_token}',
-      'X-GitHub-Api-Version': '2022-11-28'
-    };
 
 // Get Git User
 
