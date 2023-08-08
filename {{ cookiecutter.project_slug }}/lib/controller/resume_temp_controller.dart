@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:window_location_href/window_location_href.dart';
 
 class ResumeTempController extends GetxController {
   // Is presseds
@@ -18,6 +19,9 @@ class ResumeTempController extends GetxController {
   var vercel_fetched = false.obs;
 // .............................................
 
+  // Current URL
+  final location = href == null ? null : href;
+  // -------------------------
   var sending = false.obs;
   var commits = 0;
   var totalCount;
@@ -67,13 +71,9 @@ class ResumeTempController extends GetxController {
 
   Future<void> load() async {
 // Get Vercel Projects
-
-    headers_projects = {'Authorization': 'Bearer ${auth_token}'};
-
     var request_projects =
-        http.Request('GET', Uri.parse('https://api.vercel.com/v9/projects'));
-
-    request_projects.headers.addAll(headers_projects);
+        http.Request('GET', Uri.parse('${location}/api/vercel_projects.ts'));
+    print(location);
 
     http.StreamedResponse response_projects = await request_projects.send();
 
@@ -83,6 +83,7 @@ class ResumeTempController extends GetxController {
       print("Got projects");
       projects = await response_projects.stream.bytesToString();
       projects = jsonDecode(projects);
+      projects = projects['json'];
       projects = projects["projects"];
       vercel_fetched.value = true;
     } else {
@@ -98,8 +99,8 @@ class ResumeTempController extends GetxController {
 
 // Get Git User
 
-    var request = http.Request('GET', Uri.parse('https://api.github.com/user'));
-    request.headers.addAll(headers);
+    var request =
+        http.Request('GET', Uri.parse('${location}/api/github_user.ts'));
 
     http.StreamedResponse response = await request.send();
 
@@ -107,7 +108,7 @@ class ResumeTempController extends GetxController {
       print("Got User");
       UserInfo = await response.stream.bytesToString();
       UserInfo = jsonDecode(UserInfo);
-
+      UserInfo = UserInfo['json'];
       profile_url = UserInfo['avatar_url'].toString();
       name_feild.text = UserInfo['name'];
       github_unme_feild.text = UserInfo['login'];
@@ -121,8 +122,7 @@ class ResumeTempController extends GetxController {
 // Get Git User Emails
 
     var request_email =
-        http.Request('GET', Uri.parse('https://api.github.com/user/emails'));
-    request_email.headers.addAll(headers);
+        http.Request('GET', Uri.parse('${location}/api/github_emails.ts'));
 
     http.StreamedResponse response_emails = await request_email.send();
 
@@ -130,6 +130,7 @@ class ResumeTempController extends GetxController {
       print("Got email");
       EmailInfo = await response_emails.stream.bytesToString();
       EmailInfo = jsonDecode(EmailInfo);
+      EmailInfo = EmailInfo['json'];
       email_feild.text = EmailInfo[0]["email"];
     } else {
       print("Could not get email");
@@ -143,19 +144,16 @@ class ResumeTempController extends GetxController {
 
   Future<void> getGithubActivity() async {
     // Get Git Activity
-    var request = http.Request(
-        'GET',
-        Uri.parse(
-            'https://api.github.com/users/${UserInfo['login']}/events?q=per_page:100'));
-
-    request.headers.addAll(headers);
-
+    print(UserInfo);
+    var request =
+        http.Request('POST', Uri.parse('${location}/api/github_events.ts'));
+    request.body = jsonEncode(UserInfo);
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
       activity = await response.stream.bytesToString();
       activity = jsonDecode(activity);
-
+      activity = activity['json'];
       for (var i = 0; i < activity.length; i++) {
         if (activity[i]['type'] == "PushEvent") {
           PushRepos.add({
@@ -181,18 +179,15 @@ class ResumeTempController extends GetxController {
         commits += record_push[k] as int;
       });
       CreateRepos = CreateRepos.toSet().toList();
-      var request_pr_issue = http.Request(
-          'GET',
-          Uri.parse(
-              'https://api.github.com/search/issues?q=author:Aarush-Acharya&type:issue&state:open&is:open'));
-
-      request_pr_issue.headers.addAll(headers);
+      var request_pr_issue =
+          http.Request('GET', Uri.parse('${location}/api/github_pr.ts'));
 
       http.StreamedResponse response_pr_issue = await request_pr_issue.send();
 
       if (response_pr_issue.statusCode == 200) {
         pr_issue = await response_pr_issue.stream.bytesToString();
         pr_issue = jsonDecode(pr_issue);
+        pr_issue = pr_issue['json'];
         pr_issue_num = pr_issue["total_count"];
       } else {
         print(response_pr_issue.reasonPhrase);
@@ -205,21 +200,15 @@ class ResumeTempController extends GetxController {
 
   Future<void> getGithubMap() async {
     //Get Map Data
-    var headers = {
-      'Authorization': 'bearer ${git_access_token}',
-      'Content-Type': 'text/plain'
-    };
-    var request =
-        http.Request('POST', Uri.parse('https://api.github.com/graphql'));
-    request.body =
-        '''{"query":"query {\\n  user(login: \\"${UserInfo['login']}\\") {\\n    name\\n    contributionsCollection {\\n      contributionCalendar {\\n        colors\\n        totalContributions\\n        weeks {\\n          contributionDays {\\n            color\\n            contributionCount\\n            date\\n            weekday\\n          }\\n          firstDay\\n        }\\n      }\\n    }\\n  }\\n}"}''';
-    request.headers.addAll(headers);
+    var request = http.Request('POST', Uri.parse('${location}/api/github_commits.ts'));
+    request.body = jsonEncode(UserInfo);
 
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
       contridata = await response.stream.bytesToString();
       contridata = jsonDecode(contridata);
+      contridata = contridata['json'];
       contridata = contridata["data"]["user"]["contributionsCollection"]
           ["contributionCalendar"];
       totalCount = contridata["totalContributions"];
