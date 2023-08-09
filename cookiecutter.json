@@ -1,5 +1,11 @@
 {
   "project_name": null,
   "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
-  "author_name": null
+  "author_name": null,
+  "is_vercel_active": false,
+  "is_profile_active": false,
+  "is_github_activity_active": false,
+  "is_github_chart_active": false,
+  "twitter_uname": "",
+  "linkedIn_uname": ""
 }

@@ -1,15 +1,20 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:window_location_href/window_location_href.dart';
 
 class ResumeTempController extends GetxController {
+
+
   // Is presseds
-  var Vercel_isPressed = true.obs;
-  var profile_isPressed = true.obs;
-  var github_issues_isPressed = true.obs;
-  var github_chart_isPressed = true.obs;
+  TextEditingController twitter_unme = TextEditingController({{ cookiecutter.twitter_uname }});
+  TextEditingController linkedIn_unme = TextEditingController({{ cookiecutter.linkedIn_uname }});
+  bool Vercel_isPressed = {{ cookiecutter.is_vercel_active }};
+  bool profile_isPressed = {{ cookiecutter.is_profile_active }};
+  bool github_issues_isPressed = {{ cookiecutter.is_github_activity_active}};
+  bool github_chart_isPressed = {{ cookiecutter.is_github_chart_active}};
   // .........................................
 
 //Data fetch variables
@@ -53,8 +58,6 @@ class ResumeTempController extends GetxController {
   TextEditingController description_feild = TextEditingController();
   TextEditingController email_feild = TextEditingController();
   TextEditingController github_unme_feild = TextEditingController();
-  TextEditingController twitter_unme = TextEditingController();
-  TextEditingController linkedIn_unme = TextEditingController();
 
   // onInit()
   @override

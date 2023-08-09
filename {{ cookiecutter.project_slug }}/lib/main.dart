@@ -50,7 +50,7 @@ class ResumeState extends State<Resume> {
                   SizedBox(
                     width: 0.208 * MediaQuery.of(context).size.width,
                   ),
-                  controller.profile_isPressed.value
+                  controller.profile_isPressed
                       ? Obx(
                           () => Container(
                                   decoration: BoxDecoration(
@@ -184,8 +184,7 @@ class ResumeState extends State<Resume> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  controller.github_issues_isPressed.value
-                      ? Obx(
+                  controller.github_issues_isPressed? Obx(
                           () => controller.activity_fetched.value
                               ? Container(
                                   height: 0.288 *
@@ -530,7 +529,7 @@ class ResumeState extends State<Resume> {
                   SizedBox(
                     width: 0.04166 * MediaQuery.of(context).size.width,
                   ),
-                  controller.Vercel_isPressed.value
+                  controller.Vercel_isPressed
                       ? Obx(
                           () => controller.vercel_fetched.value
                               ? Container(
@@ -906,7 +905,7 @@ class ResumeState extends State<Resume> {
                             height:
                                 1.4 / 100 * MediaQuery.of(context).size.height,
                           ),
-                          Row(
+                          controller.twitter_unme.text!=""?Row(
                             children: [
                               SizedBox(
                                 width: 2.43 /
@@ -964,12 +963,12 @@ class ResumeState extends State<Resume> {
                                 ),
                               ),
                             ],
-                          ),
+                          ):SizedBox(),
                           SizedBox(
                             height:
                                 1.4 / 100 * MediaQuery.of(context).size.height,
                           ),
-                          Row(
+                          controller.linkedIn_unme.text!=""?Row(
                             children: [
                               SizedBox(
                                 width: 2.43 /
@@ -1027,7 +1026,7 @@ class ResumeState extends State<Resume> {
                                 ),
                               ),
                             ],
-                          ),
+                          ):SizedBox(),
                         ],
                       ),
                     ),
@@ -1037,7 +1036,7 @@ class ResumeState extends State<Resume> {
               SizedBox(
                 height: 0.049 * MediaQuery.of(context).size.height,
               ),
-              controller.github_chart_isPressed.value
+              controller.github_chart_isPressed
                   ? Obx(
                       () => controller.map_fetched.value
                           ? Container(
