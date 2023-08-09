@@ -10,10 +10,10 @@ class ResumeTempController extends GetxController {
   // Is presseds
   TextEditingController twitter_unme = TextEditingController(text: "{{ cookiecutter.twitter_uname }}");
   TextEditingController linkedIn_unme = TextEditingController(text: "{{ cookiecutter.linkedIn_uname }}");
-  bool Vercel_isPressed = {{ cookiecutter.is_vercel_active | lower }}.obs;
-  bool profile_isPressed = {{ cookiecutter.is_profile_active | lower }}.obs;
-  bool github_issues_isPressed = {{ cookiecutter.is_github_activity_active | lower}}.obs;
-  bool github_chart_isPressed = {{ cookiecutter.is_github_chart_active | lower}}.obs;
+  RxBool Vercel_isPressed = {{ cookiecutter.is_vercel_active | lower }}.obs;
+  RxBool profile_isPressed = {{ cookiecutter.is_profile_active | lower }}.obs;
+  RxBool github_issues_isPressed = {{ cookiecutter.is_github_activity_active | lower}}.obs;
+  RxBool github_chart_isPressed = {{ cookiecutter.is_github_chart_active | lower}}.obs;
   // .........................................
 
 //Data fetch variables
