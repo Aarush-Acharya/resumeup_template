@@ -50,9 +50,9 @@ class ResumeState extends State<Resume> {
                   SizedBox(
                     width: 0.208 * MediaQuery.of(context).size.width,
                   ),
-                  controller.profile_isPressed
-                      ? Obx(
-                          () => Container(
+                  Obx(
+                          () => controller.profile_isPressed
+                      ? Container(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(90),
                                       gradient: const LinearGradient(colors: [
@@ -101,9 +101,7 @@ class ResumeState extends State<Resume> {
                                 ),
                               ),
                             ),
-                                )
-                              
-                        )
+                                )  
                       : SizedBox(
                               child: Center(
                                 child: GradientProgressIndicator(
@@ -121,7 +119,7 @@ class ResumeState extends State<Resume> {
                                   child: SizedBox(),
                                 ),
                               ),
-                            ),
+                            )),
                   SizedBox(
                     width: 0.02 * MediaQuery.of(context).size.width,
                   ),
@@ -184,8 +182,8 @@ class ResumeState extends State<Resume> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  controller.github_issues_isPressed? Obx(
-                          () => controller.activity_fetched.value
+                  Obx(
+                          () =>  controller.github_issues_isPressed.value?controller.activity_fetched.value
                               ? Container(
                                   height: 0.288 *
                                       MediaQuery.of(context).size.height,
@@ -523,15 +521,15 @@ class ResumeState extends State<Resume> {
                                   child: SizedBox(),
                                 ),
                               ),
-                            ),
-                        )
-                      : SizedBox(),
+                            )
+    
+                      : SizedBox()                    ),
                   SizedBox(
                     width: 0.04166 * MediaQuery.of(context).size.width,
                   ),
-                  controller.Vercel_isPressed
-                      ? Obx(
-                          () => controller.vercel_fetched.value
+                  Obx(
+                          () => controller.Vercel_isPressed.value
+                      ? controller.vercel_fetched.value
                               ? Container(
                                   height: 0.2822 *
                                       MediaQuery.of(context).size.height,
@@ -745,9 +743,8 @@ class ResumeState extends State<Resume> {
                                   child: SizedBox(),
                                 ),
                               ),
-                            ),
-                        )
-                      : SizedBox(),
+                            )
+                      : SizedBox(),),
                   SizedBox(
                     width: 0.0416 * MediaQuery.of(context).size.width,
                   ),
@@ -1036,9 +1033,9 @@ class ResumeState extends State<Resume> {
               SizedBox(
                 height: 0.049 * MediaQuery.of(context).size.height,
               ),
-              controller.github_chart_isPressed
-                  ? Obx(
-                      () => controller.map_fetched.value
+              Obx(
+                      () =>  controller.github_chart_isPressed
+                  ?controller.map_fetched.value
                           ? Container(
                               height:
                                   0.2699 * MediaQuery.of(context).size.height,
@@ -1101,9 +1098,9 @@ class ResumeState extends State<Resume> {
                                   child: SizedBox(),
                                 ),
                               ),
-                            ),
-                    )
-                  : SizedBox(),
+                            )
+              
+                  : SizedBox()     ),
             ]),
           ),
         ),
