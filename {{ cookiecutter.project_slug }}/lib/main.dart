@@ -51,7 +51,7 @@ class ResumeState extends State<Resume> {
                     width: 0.208 * MediaQuery.of(context).size.width,
                   ),
                   Obx(
-                          () => controller.profile_isPressed
+                          () => controller.profile_isPressed.value
                       ? Container(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(90),
@@ -1034,7 +1034,7 @@ class ResumeState extends State<Resume> {
                 height: 0.049 * MediaQuery.of(context).size.height,
               ),
               Obx(
-                      () =>  controller.github_chart_isPressed
+                      () =>  controller.github_chart_isPressed.value
                   ?controller.map_fetched.value
                           ? Container(
                               height:
